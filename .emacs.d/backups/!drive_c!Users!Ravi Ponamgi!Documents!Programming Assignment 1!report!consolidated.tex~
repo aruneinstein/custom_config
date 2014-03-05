@@ -1,0 +1,720 @@
+
+% This LaTeX was auto-generated from an M-file by MATLAB.
+% To make changes, update the M-file and republish this document.
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{epstopdf}
+\author{Arun Kumar M S (012533675)}
+\sloppy
+\definecolor{lightgray}{gray}{0.5}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\subsection*{Problem 6}
+
+
+
+\subsection*{Part A}
+
+\begin{par}
+The results of the classification will be present in out.decision where out is a struct that is a return parameter of this function.
+\end{par} \vspace{1em}
+
+
+\subsection*{Part B}
+
+\begin{par}
+The values of $P_{FA}$ and $P_{M}$ will be present in the out struct which is a return value of this function.
+\end{par} \vspace{1em}
+\begin{verbatim}
+% convert the ground truth to logical vector for processing.
+D = cellfun(@(x) isequal(x, 'Epilepsy') , D);
+
+% calculate the ROC curve data
+ROCdata = rocSH([lratio, D]);
+\end{verbatim}
+
+
+\subsection*{Part C}
+
+\begin{par}
+Plot the curve of ROC. Find the area under it using trapezoidal integration approximation. Area is around 0.8385 which implies an accuracy of 83.85\%
+\end{par} \vspace{1em}
+\begin{verbatim}
+figure(2);
+plot(ROCdata.FPR,ROCdata.TPR,'ro-');
+xlabel('FPR');
+ylabel('TPR');
+AreaUnderROC=trapz(ROCdata.FPR,ROCdata.TPR);
+title(sprintf('ROC curve {Area Under Curve: %f}', AreaUnderROC));
+
+out.pfa = ROCdata.FPR;
+out.pm = ROCdata.pm;
+\end{verbatim}
+
+\includegraphics [width=4in]{Problem6_01.eps}
+\begin{verbatim}
+end
+\end{verbatim}
+
+        \color{lightgray} \begin{verbatim}
+ans = 
+
+    decision: {1x20 cell}
+         pfa: [202x1 double]
+          pm: [202x1 double]
+
+\end{verbatim} \color{black}
+
+
+    
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Problem 5
+   \item Part A
+   \item Part B
+\end{itemize}
+\begin{verbatim}
+function Problem5( )
+\end{verbatim}
+
+
+\subsection*{Problem 5}
+
+\begin{verbatim}
+    % Load the data
+    clear all;
+    load('Problem5Data.mat');
+    data = Problem5Data;
+    records = data(:, 1:2);
+    harmfulness = data(:, 3);
+
+    % Find the distribution parameters for likelihoods.
+    harmful = records .* [harmfulness, harmfulness];
+    harmful(sum(harmful, 2) == 0, :) = [];
+    p_x_harmful_mu = mean(harmful);
+    p_x_harmful_sig = cov(harmful);
+
+    unharmful = records .* [~harmfulness, ~harmfulness];
+    unharmful(sum(unharmful, 2) == 0, :) = [];
+    p_x_unharmful_mu = mean(unharmful);
+    p_x_unharmful_sig = cov(unharmful);
+
+    % Find the priors.
+    p_harmful = length(harmfulness(harmfulness == 1))/length(harmfulness);
+    p_unharmful = 1 - p_harmful;
+
+    dom = [50 180 50 180];
+
+    % Find the posterioris
+    posteriori_harmful = @(x, y) mvnpdf([x y], p_x_harmful_mu,...
+        p_x_harmful_sig) * p_harmful;
+    posteriori_unharmful = @(x, y) mvnpdf([x y], p_x_unharmful_mu,...
+        p_x_unharmful_sig) * p_unharmful;
+\end{verbatim}
+
+
+\subsection*{Part A}
+
+\begin{par}
+Plot the likelihood*priors for harmful and un-harmful air.
+\end{par} \vspace{1em}
+\begin{verbatim}
+    figure(1);
+    colormap([0 0 1]);
+    ezsurf(posteriori_harmful, dom);
+    title('Harmful');
+
+    figure(2);
+    colormap([1 0 0]);
+    ezsurf(posteriori_unharmful, dom);
+    title('Unharmful');
+\end{verbatim}
+
+\includegraphics [width=4in]{Problem5_01.eps}
+
+\includegraphics [width=4in]{Problem5_02.eps}
+
+
+\subsection*{Part B}
+
+\begin{par}
+Plot the decision boundaries.
+\end{par} \vspace{1em}
+\begin{verbatim}
+    figure(3);
+    ezcontour(posteriori_unharmful, dom);
+    colormap([1 0 0]);
+    hold on;
+    ezcontour(posteriori_harmful, dom);
+    ezplot(@(x, y) (posteriori_harmful(x, y) - posteriori_unharmful(x, y)), dom);
+    title('Contours And Decision Boundaries')
+    hold off;
+\end{verbatim}
+
+\includegraphics [width=4in]{Problem5_03.eps}
+\begin{verbatim}
+end
+\end{verbatim}
+
+
+    
+    
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Problem 4
+   \item Part A
+   \item I
+   \item II
+   \item III
+   \item IV
+   \item Part B
+   \item I
+   \item II
+   \item III
+   \item IV
+\end{itemize}
+\begin{verbatim}
+function Problem4( )
+\end{verbatim}
+
+
+\subsection*{Problem 4}
+
+
+
+\subsection*{Part A}
+
+
+
+\subsection*{I}
+
+\begin{par}
+Since the covariance matrices are equal, the decision boundaries will be a plane which is $\emph{not}$ perpendicular to the lines joining the means of the distributions. But decision boundary will be away from class w2.
+\end{par} \vspace{1em}
+\begin{verbatim}
+clear all;
+dom = [-5 6 -5 6];
+p_w1 = 0.3;
+p_w2 = 0.7;
+MU_w_1 = [1 3];
+Sigma_w_1 = [2 1; 1 1];
+Likelihood_w1 = @(feature_1, feature_2) mvnpdf([feature_1, feature_2],...
+    MU_w_1, Sigma_w_1);
+
+MU_w_2 = [-1 -1];
+Sigma_w_2 = Sigma_w_1;
+Likelihood_w2 = @(feature_1, feature_2) mvnpdf([feature_1, feature_2],...
+    MU_w_2, Sigma_w_2);
+\end{verbatim}
+
+
+\subsection*{II}
+
+\begin{par}
+Plot is as follows:
+\end{par} \vspace{1em}
+\begin{verbatim}
+plot_graph(Likelihood_w1, Likelihood_w2, dom, 'Likelihood Graph',...
+    'Likelihood');
+\end{verbatim}
+
+\includegraphics [width=4in]{Problem4_01.eps}
+
+\includegraphics [width=4in]{Problem4_02.eps}
+
+
+\subsection*{III}
+
+\begin{par}
+Posteriori is as follows:
+\end{par} \vspace{1em}
+\begin{verbatim}
+posteriori_w1 = @(f1, f2)(Likelihood_w1(f1, f2) * p_w1);
+posteriori_w2 = @(f1, f2)(Likelihood_w2(f1, f2) * p_w2);
+
+plot_graph(posteriori_w1, posteriori_w2, dom, 'Posteriori Graph',...
+    'Posteriori');
+\end{verbatim}
+
+\includegraphics [width=4in]{Problem4_03.eps}
+
+\includegraphics [width=4in]{Problem4_04.eps}
+
+
+\subsection*{IV}
+
+\begin{par}
+plots of posteriori contours and decision boundaries are as follows: The plots appear to be as predicted.
+\end{par} \vspace{1em}
+\begin{verbatim}
+plot_boundary(posteriori_w1, posteriori_w2, dom);
+\end{verbatim}
+
+\includegraphics [width=4in]{Problem4_05.eps}
+
+
+\subsection*{Part B}
+
+
+
+\subsection*{I}
+
+\begin{par}
+Since the covariance matrices are $\emph{not}$ equal, the decision boundaries may be a ellipsoid, hyperboloid whose orientation may be not be predictable. But decision boundary will be away from class w2.
+\end{par} \vspace{1em}
+\begin{verbatim}
+Sigma_w_2 = [2 0.5; 0.5 1];
+Likelihood_w2 = @(feature_1, feature_2) mvnpdf([feature_1, feature_2],...
+    MU_w_2, Sigma_w_2);
+\end{verbatim}
+
+
+\subsection*{II}
+
+\begin{par}
+Plot is as follows:
+\end{par} \vspace{1em}
+\begin{verbatim}
+plot_graph(Likelihood_w1, Likelihood_w2, dom, 'Likelihood Graph',...
+    'Likelihood');
+\end{verbatim}
+
+\includegraphics [width=4in]{Problem4_06.eps}
+
+\includegraphics [width=4in]{Problem4_07.eps}
+
+
+\subsection*{III}
+
+\begin{par}
+Posteriori is as follows:
+\end{par} \vspace{1em}
+\begin{verbatim}
+posteriori_w1 = @(f1, f2)(Likelihood_w1(f1, f2) * p_w1);
+posteriori_w2 = @(f1, f2)(Likelihood_w2(f1, f2) * p_w2);
+
+plot_graph(posteriori_w1, posteriori_w2, dom, 'Posteriori Graph',...
+    'Posteriori');
+\end{verbatim}
+
+\includegraphics [width=4in]{Problem4_08.eps}
+
+\includegraphics [width=4in]{Problem4_09.eps}
+
+
+\subsection*{IV}
+
+\begin{par}
+Plots of posteriori contours and decision boundaries are as follows: The plots appear to be as predicted.
+\end{par} \vspace{1em}
+\begin{verbatim}
+plot_boundary(posteriori_w1, posteriori_w2, dom);
+\end{verbatim}
+
+\includegraphics [width=4in]{Problem4_10.eps}
+\begin{verbatim}
+end
+
+function plot_graph(par1, par2, dom, titl1, zlbl)
+    figure('Name', 'Class W_1');
+    ezsurf(par1, dom);
+    title(titl1);
+    xlabel('Feature 1');
+    ylabel('Feature 2');
+    zlabel(zlbl);
+    colormap([1 0 0]);
+
+    figure('Name', 'Class W_2');
+    ezsurf(par2, dom);
+    title(titl1);
+    xlabel('Feature 1');
+    ylabel('Feature 2');
+    zlabel(zlbl);
+    colormap([0 0 1]);
+end
+
+function plot_boundary(par1, par2, dom)
+    figure('Name', 'Decision Boundary');hold on;
+    colormap([0 0 1]);
+    ezcontour(par1, dom);
+    xlabel('Feature 1');
+    ylabel('Feature 2');
+    colormap([1 0 0]);
+    ezcontour(par2, dom);
+    xlabel('Feature 1');
+    ylabel('Feature 2');
+    ezplot(@(f1, f2)(par1(f1, f2) - par2(f1, f2)));
+    grid; axis equal;
+    title('Decision Boundary')
+    hold off;
+end
+\end{verbatim}
+
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Problem 3
+   \item Part A
+   \item Part B
+   \item Part C
+   \item Part D
+   \item Part E
+\end{itemize}
+\begin{verbatim}
+function Problem3()
+\end{verbatim}
+
+
+\subsection*{Problem 3}
+
+
+
+\subsection*{Part A}
+
+\begin{par}
+The plot is shown below.
+\end{par} \vspace{1em}
+\begin{verbatim}
+  clear all;
+  MU = [12  5];
+  SIGMA = [10 0; 0 20];
+  dom = [-20 20 -20 20];
+
+  figure('Name', 'Problem 3'); %, 'Position', [720 600 720 600]*1.6);
+  subplot(3, 2, 1);
+  draw_contour(MU, SIGMA, dom, '(a) \mu = [12 5];\Sigma = [10 0; 0 20]',...
+               'Variable 1', 'Variable 2');
+\end{verbatim}
+
+\includegraphics [width=4in]{Problem3_01.eps}
+
+
+\subsection*{Part B}
+
+\begin{par}
+The center of the ellipse is displaced to (-10, -4) with everything else being the same.
+\end{par} \vspace{1em}
+\begin{verbatim}
+ % Change the mean vector.
+  MU = [-10  -4];
+  subplot(3, 2, 2);
+  draw_contour(MU, SIGMA, dom, '(b) \mu = [-10 -4];\Sigma = [10 0; 0 20]',...
+               'Variable 1', 'Variable 2');
+\end{verbatim}
+
+\includegraphics [width=4in]{Problem3_02.eps}
+
+
+\subsection*{Part C}
+
+\begin{par}
+The center of the ellipse remains the same. But since $\Sigma_{1,1}$ has reduced to 4 from previous value of 10, the ellipse has its axis with respect to Variable 1 shortened. So, we see an ellipse which is elongated.
+\end{par} \vspace{1em}
+\begin{verbatim}
+  % Revert the value of mean vector to the one given in (a).
+  MU = [12  5];
+  % Change the value covariance matrix.
+  SIGMA = [4 0; 0 20];
+  subplot(3, 2, 3);
+  draw_contour(MU, SIGMA, dom, '(c) \mu = [12 5];\Sigma = [4 0; 0 20]',...
+               'Variable 1', 'Variable 2');
+\end{verbatim}
+
+\includegraphics [width=4in]{Problem3_03.eps}
+
+
+\subsection*{Part D}
+
+\begin{par}
+The center of the ellipse remains the same. But since $\Sigma_{2,2}$ has reduced to 5 from previous value of 20, the ellipse has its axis with respect to Variable 2 shortened. So, we see an ellipse which is fattened.
+\end{par} \vspace{1em}
+\begin{verbatim}
+  SIGMA = [10 0; 0 5];
+  subplot(3, 2, 4);
+  draw_contour(MU, SIGMA, dom, '(d) \mu = [12 5];\Sigma = [10 0; 0 5]',...
+               'Variable 1', 'Variable 2');
+\end{verbatim}
+
+\includegraphics [width=4in]{Problem3_04.eps}
+
+
+\subsection*{Part E}
+
+\begin{par}
+The center of the ellipse remains the same. But since there are co-variance terms in $\Sigma$, we have the ellipse rotated when compared with the one in Part A.
+\end{par} \vspace{1em}
+\begin{verbatim}
+  SIGMA = [10 10; 10 20];
+  subplot(3, 2, 5);
+  draw_contour(MU, SIGMA, dom, '(e) \mu = [12 5];\Sigma = [10 10; 10 20]',...
+               'Variable 1', 'Variable 2');
+\end{verbatim}
+
+\includegraphics [width=4in]{Problem3_05.eps}
+\begin{verbatim}
+end
+
+function draw_contour(MU, SIGMA, dom, titl, var1, var2)
+  func = @(x1, x2) mvnpdf([x1 x2], MU, SIGMA);
+  ezcontour(func, dom);
+  title(titl);
+  xlabel(var1);
+  ylabel(var2);
+  grid;
+  axis equal;
+end
+\end{verbatim}
+
+    
+    
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Problem 2
+   \item Plot the decision boundaries
+\end{itemize}
+\begin{verbatim}
+function Problem2( )
+\end{verbatim}
+
+
+\subsection*{Problem 2}
+
+\begin{par}
+Loading the dataset gives us the lengths and the tumor class. From this information we can $p(x|tumor)$ and $p(x|no-tumor)$ by finding the mean and variance from the data. Mean and vairiance of data in which tumor is not present (tumor column = 0) gives the distribution of $p(x|no-tumor)$. Mean and variance of data in which tumor is present (tumor column = 1) gives the distribution of $p(x|tumor)$.
+\end{par} \vspace{1em}
+\begin{par}
+$$p(x|tumor) = N(\mu_{1}, \sigma_{1}) and p(x|no-tumor) = N(\mu_{2}, \sigma_{2})$$
+\end{par} \vspace{1em}
+\begin{par}
+The prior can be calculated as the ratio of the number of data samples with tumor to total number of data samples.
+\end{par} \vspace{1em}
+\begin{par}
+$$Let D be the data, then p(tumor) = x/|D|, \{x \mid x \in D \& x(tumor) = 1\}$$
+\end{par} \vspace{1em}
+\begin{par}
+And then we compute the posteriori based on this.
+\end{par} \vspace{1em}
+\begin{verbatim}
+%%Plot the posteriori
+% load the data.
+    clear all;
+    load('Problem2Data');
+    lengths = Problem2Data(:,1);
+    tumorclasses = Problem2Data(:, 2);
+
+% compute the priors and likelihood.
+    dat = tumorclasses .* lengths;
+    dat(dat == 0) = [];
+    p_tumor = (length(dat)/length(tumorclasses));
+    p_x_tumor_mu = mean(dat);
+    p_x_tumor_sig = var(dat);
+
+    negated_tumorclasses = ~tumorclasses;
+    dat = negated_tumorclasses .* lengths;
+    dat(dat == 0) = [];
+    p_notumor = 1 - p_tumor;
+    p_x_notumor_mu = mean(dat);
+    p_x_notumor_sig = var(dat);
+
+    x = -20:0.01:20;
+
+    tumor_likelihood = normpdf(x, p_x_tumor_mu, sqrt(p_x_tumor_sig));
+    notumor_likelihood = normpdf(x, p_x_notumor_mu, sqrt(p_x_notumor_sig));
+
+%  caluculate the posterioris.
+    evidence = [p_tumor p_notumor] * [tumor_likelihood; notumor_likelihood];
+    posteriori_tumor = (tumor_likelihood * p_tumor) ./ evidence;
+    posteriori_notumor = (notumor_likelihood * p_notumor) ./ evidence;
+
+    hold on;
+% plot the posterioris
+    plot(x, posteriori_tumor, 'r');
+    plot(x, posteriori_notumor, 'b');
+    set_graph_properties(char('Posteriori Graph', ...
+        'Hydrocephalus Size (cm)', 'Posteriori', 'Tumor Present (T_{1})',...
+        'Tumor Not Present (T_{2})'));
+\end{verbatim}
+
+\includegraphics [width=4in]{Problem2_01.eps}
+
+
+\subsection*{Plot the decision boundaries}
+
+\begin{par}
+find the intersection points of the posterioris
+\end{par} \vspace{1em}
+\begin{verbatim}
+    [intrsc_x, intrsc_y] = intersections(x, posteriori_tumor, ...
+        x, posteriori_notumor);
+
+% Select only the intersections at which Maximum Posteriori changes.
+    decision_boundary(intrsc_x, intrsc_y, x, [posteriori_tumor; ...
+        posteriori_notumor], x, 0:0.001:1, ['T_{1}'; 'T_{2}']);
+
+    hold;
+\end{verbatim}
+
+        \color{lightgray} \begin{verbatim}Current plot released
+\end{verbatim} \color{black}
+    
+\includegraphics [width=4in]{Problem2_02.eps}
+\begin{verbatim}
+end
+
+function set_graph_properties(properties)
+    title(properties(1, :));
+    xlabel(properties(2, :));
+    ylabel(properties(3, :));
+    legend(properties(4, :), properties(5, :));
+end
+\end{verbatim}
+
+    
+    
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Solution of Problem 1
+   \item Plot the likelihoods for each class ($w_{1}, w_{2}, w_{3}$).
+   \item Plot the posteriori and find the decision boundaries.
+\end{itemize}
+
+
+\subsection*{Solution of Problem 1}
+
+\begin{par}
+Let, $\\*$ \texttt{p}        : vector containing priors of class $w_{1}, w_{2}, w_{3}$. $\\*$ \texttt{MU}       : vector containing means of the distributions of likelihoods of class $w_{1}, w_{2}, w_{3}$. $\\*$ \texttt{VARIANCE} : vector containing the variance of likelihoods of $w_{1}, w_{2}, w_{3}$. $\\*$
+\end{par} \vspace{1em}
+\begin{par}
+Run the 'problem1' function to get the plots for likelihood and prior. The vector p is derived from the ratios of priors.
+\end{par} \vspace{1em}
+\begin{par}
+$$p(w_{1}):p(w_{2}):p(w_{3}) = 2:2:1$$
+\end{par} \vspace{1em}
+\begin{par}
+Below is the code and graph along with explanations.
+\end{par} \vspace{1em}
+\begin{verbatim}
+function Problem1( )
+\end{verbatim}
+
+
+\subsection*{Plot the likelihoods for each class ($w_{1}, w_{2}, w_{3}$).}
+
+\begin{par}
+In this section, we will calculate the likelihoods and plot it against color intensity of the camera.
+\end{par} \vspace{1em}
+\begin{verbatim}
+    clear all;
+    p = [2/5; 2/5; 1/5];
+    MU = [4;6;8];
+    VARIANCE = [1;2;8];
+
+    % We take the intensity range from -20 to +30 which is the interesting
+    % range. This was obtained by trial and error.
+    x = -20:0.01:30;
+
+    % Set general graph properties and position where the plots should appear.
+    figure;
+    grid;
+
+    % Set title and label for the graphs.
+    title('Likelihood graph');
+    ylabel('Likelihood');
+    xlabel('Color intensity');
+    hold on;
+    color = ['r' ; 'k'; 'b'];
+
+    % Create a placeholder for storing likelihoods that will be calculated.
+    likelihood = zeros(length(p), length(x));
+
+    % Calculate the likelihood for each
+    for i=1:length(p)
+        likelihood(i, :) = normpdf(x, MU(i), sqrt(VARIANCE(i)));
+        plot(x, likelihood(i, :), color(i));
+    end
+    legend('Class W_{1}', 'Class W_{2}', 'Class W_{3}');
+    hold;
+\end{verbatim}
+
+        \color{lightgray} \begin{verbatim}Current plot released
+\end{verbatim} \color{black}
+    
+\includegraphics [width=4in]{Problem1_01.eps}
+
+
+\subsection*{Plot the posteriori and find the decision boundaries.}
+
+\begin{par}
+In this section we find the posteriori for all the likelihoods that we calculated previously and plot it.
+\end{par} \vspace{1em}
+\begin{par}
+Inorder to do that, we have to find the evidence from law of total probability,
+\end{par} \vspace{1em}
+\begin{par}
+$$evidence = \Sigma_{i=1}^{n} \hspace{1em}  p(x|w_{i}) \times p(w_{i})$$
+\end{par} \vspace{1em}
+\begin{par}
+Where n = number of classes.
+\end{par} \vspace{1em}
+\begin{verbatim}
+    evidence = (p' * likelihood);
+
+    % Set general graph properties and position where the plots should appear.
+    figure;
+    grid;
+
+    % Set title and label for the graphs.
+    title('Poseriori Graph');
+    ylabel('Posteriori');
+    xlabel('Color intensity');
+    hold on;
+    color = ['b' ; 'g'; 'r'];
+
+    % Create a placeholder for storing posteriori that will be calculated.
+    posteriori = zeros(length(p), length(x));
+
+    % Calculate the posteriori
+    for i = 1:length(p)
+        posteriori(i, :) = (likelihood(i, :) * p(i)) ./ evidence;
+        % Plot only the interesting range.
+        plot(x(1500:4000), posteriori(i, 1500:4000), color(i));
+    end
+
+    legend('Class W_{1}', 'Class W_{2}', 'Class W_{3}');
+
+    % Plot the decision boundary.
+    [x1, y1] = intersections(x, posteriori(1, :), x, posteriori(2, :));
+    [x2, y2] = intersections(x, posteriori(1, :), x, posteriori(3, :));
+    [x3, y3] = intersections(x, posteriori(2, :), x, posteriori(3, :));
+    decision_boundary([x1; x2; x3], [y1; y2; y3], x, posteriori, ...
+        x(1500:4000), 0:0.001:1, ['W_{1}'; 'W_{2}'; 'W_{3}']);
+
+    hold;
+\end{verbatim}
+
+        \color{lightgray} \begin{verbatim}Current plot released
+\end{verbatim} \color{black}
+    
+\includegraphics [width=4in]{Problem1_02.eps}
+\begin{verbatim}
+end
+\end{verbatim}
+
+
+
+\end{document}
+    

@@ -1,0 +1,31 @@
+
+;; ----- smex-history -----
+(
+ server-mode
+ server-start
+ fill-region
+ set-fill-column
+ org-mode
+ fill-paragraph
+ load-theme
+)
+
+;; ----- smex-data -----
+(
+ (load-theme . 19)
+ (package-install . 8)
+ (set-default-font . 2)
+ (enclose-mode . 5)
+ (octave-mode . 7)
+ (eval-buffer . 1)
+ (idl-mode . 1)
+ (fundamental-mode . 1)
+ (hi-lock-mode . 2)
+ (org-mode . 3)
+ (org-table-create . 2)
+ (fill-region . 27)
+ (fill-paragraph . 2)
+ (set-fill-column . 2)
+ (server-start . 1)
+ (server-mode . 1)
+)
