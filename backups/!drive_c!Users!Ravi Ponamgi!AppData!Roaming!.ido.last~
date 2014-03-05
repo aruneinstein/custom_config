@@ -1,0 +1,91 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("c:/Users/Ravi Ponamgi/Documents/Programming Assignment 1/" . "report/")
+ ("c:/Users/Ravi Ponamgi/AppData/Roaming/" . ".emacs.d/")
+ ("c:/Users/Ravi Ponamgi/AppData/" . "Roaming/")
+ ("~/" . ".emacs.d/")
+ ("c:/Users/Ravi Ponamgi/Documents/MATLAB/" . "Programming Assignment 1/")
+ ("c:/Users/Ravi Ponamgi/Documents/" . "Programming Assignment 1/")
+ ("c:/Users/Ravi Ponamgi/" . "AppData/")
+ ("c:/Users/Ravi Ponamgi/AppData/Roaming/.emacs.d/elpa/" . "solarized-theme-1.0.0/")
+ ("c:/Users/Ravi Ponamgi/AppData/Roaming/.emacs.d/" . "elpa/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "c:/Users/Ravi Ponamgi/Documents/MATLAB/Programming Assignment 1/"
+ "c:/Users/Ravi Ponamgi/Documents/Programming Assignment 1/report/"
+ "c:/Users/Ravi Ponamgi/Documents/MATLAB/"
+ "~/.emacs.d/"
+ "c:/Users/Ravi Ponamgi/AppData/Roaming/.emacs.d/"
+ "c:/Users/Ravi Ponamgi/AppData/Roaming/.emacs.d/elpa/solarized-theme-1.0.0/"
+ "c:/Users/Ravi Ponamgi/AppData/Roaming/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "Problem6.m"
+ "Problem2.m"
+ "Problem1.m"
+ "Problem4.m"
+ "Problem5.m"
+ "consolidated.tex"
+ "consolidated.log"
+ "Problem1.tex"
+ "Feb5.m"
+ "Feb17.m"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("c:/Users/Ravi Ponamgi/Documents/MATLAB/Programming Assignment 1/" (21268 13780 0 0) "Thumbs.db" "rocSH.m" "Report.pdf" "Programming Assignment 1.zip" "Problem6Data.mat" "Problem6.m" "Problem5Data.mat" "Problem5.m" "Problem4.m" "Problem3.m" "Problem2Data.mat" "Problem2.m" "Problem1.m" "intersections.m" "decision_boundary.m" "../" "./")
+
+ ("c:/Users/Ravi Ponamgi/Documents/MATLAB/" (21268 13689 0 0) "Sample Code/" "ProgrammingAssgn1Problems/" "Programming Assignment 1.zip" "Programming Assignment 1/" "matlab-cheatsheet.pdf" "libraries/" "emacs-24.3/" "../" "./")
+
+ ("c:/Users/Ravi Ponamgi/Documents/Programming Assignment 1/report/" (21268 12602 0 0) "Thumbs.db" "Problem6_01.eps" "Problem6_01-eps-converted-to.pdf" "Problem6.tex" "Problem5_03.eps" "Problem5_03-eps-converted-to.pdf" "Problem5_02.eps" "Problem5_02-eps-converted-to.pdf" "Problem5_01.eps" "Problem5_01-eps-converted-to.pdf" "Problem5.tex" "Problem4_10.eps" "Problem4_10-eps-converted-to.pdf" "Problem4_09.eps" "Problem4_09-eps-converted-to.pdf" "Problem4_08.eps" "Problem4_08-eps-converted-to.pdf" "Problem4_07.eps" "Problem4_07-eps-converted-to.pdf" "Problem4_06.eps" "Problem4_06-eps-converted-to.pdf" "Problem4_05.eps" "Problem4_05-eps-converted-to.pdf" "Problem4_04.eps" "Problem4_04-eps-converted-to.pdf" "Problem4_03.eps" "Problem4_03-eps-converted-to.pdf" "Problem4_02.eps" "Problem4_02-eps-converted-to.pdf" "Problem4_01.eps" "Problem4_01-eps-converted-to.pdf" "Problem4.tex" "Problem3_05.eps" "Problem3_05-eps-converted-to.pdf" "Problem3_04.eps" "Problem3_04-eps-converted-to.pdf" "Problem3_03.eps" "Problem3_03-eps-converted-to.pdf" "Problem3_02.eps" "Problem3_02-eps-converted-to.pdf" "Problem3_01.eps" "Problem3_01-eps-converted-to.pdf" "Problem3.tex" "Problem3.synctex.gz" "Problem3.pdf" "Problem3.log" "Problem3.doc" "Problem3.aux" "Problem2_02.eps" "Problem2_02-eps-converted-to.pdf" "Problem2_01.eps" "Problem2_01-eps-converted-to.pdf" "Problem2.tex" "Problem1_02-eps-converted-to.pdf" "Problem1_01.eps" "Problem1_01-eps-converted-to.pdf" "Problem1.tex" "Problem1.doc" "consolidated.tex" "consolidated.synctex.gz" "consolidated.pdf" "consolidated.log" "consolidated.aux" "../" "./")
+
+ ("c:/Users/Ravi Ponamgi/Documents/Programming Assignment 1/" (21266 25369 0 0) "report/" "../" "./")
+
+ ("c:/Users/Ravi Ponamgi/Documents/" (21267 32260 0 0) "Visual Studio 2010/" "Visual Studio 2008/" "Thumbs.db" "Symantec/" "Status Report 2 for 2.27.14 with review comments resolved.docx" "Sounds-of-Isha-Vairagya-Bonding-with-Beyond.zip" "Shiva-Ultimate-Outlaw.pdf" "Shiva-Ultimate-Outlaw-Quote.jpg" "Shiva-Outlaw-Desktop-Wallpapers.zip" "Shiva Outlaw Mobile Wallpapers.zip" "scraping/" "Resume_Arun_Kumar.pdf" "Resume_Arun_Kumar.doc" "Ravi--STATS/" "Programming Assignment 1.docx" "Programming Assignment 1/" "Personal Statement.docx" "Outlook Files/" "OOSD CASE Tool with review comments resolved.docx" "My Videos/" "My Pictures/" "My Music/" "My Barnes & Noble eBooks/" "MATLAB/" "desktop.ini" "COEApplication2014.doc" "AutoHotkey.ahk" "../" "./")
+
+ ("c:/Users/Ravi Ponamgi/Documents/MATLAB/emacs-24.3/info/" (21265 34775 0 0) "woman.info" "wisent.info" "widget.info" "viper.info" "vip.info" "url.info" "tramp.info" "srecode.info" "speedbar.info" "smtpmail.info" "sieve.info" "ses.info" "semantic.info" "sc.info" "sasl.info" "remember.info" "reftex.info" "rcirc.info" "pgg.info" "pcl-cvs.info" "org.info" "nxml-mode.info" "newsticker.info" "mh-e.info" "message.info" "mairix-el.info" "info.info" "idlwave.info" "htmlfontify.info" "gnus.info" "forms.info" "flymake.info" "eudc.info" "eshell.info" "ert.info" "erc.info" "epa.info" "emacs.info" "emacs-mime.info" "emacs-gnutls.info" "elisp.info" "eintr.info" "eieio.info" "efaq.info" "edt.info" "ediff.info" "ede.info" "ebrowse.info" "dired-x.info" "dir" "dbus.info" "COPYING" "cl.info" "ccmode.info" "calc.info" "bovine.info" "autotype.info" "auth.info" "ada-mode.info" "../" "./")
+
+ ("~/.emacs.d/" (21265 38558 0 0) "places" "init.el" "elpa/" "backups/" "auto-save-list/" ".smex-items" "../" "./")
+
+ ("~/" (21265 38483 0 0) "Subversion/" "SlimBrowser/" "npm-cache/" "npm/" "Notepad++/" "Mozilla/" "MiKTeX/" "Microsoft/" "Media Center Programs/" "MathWorks/" "Macromedia/" "Identities/" "GitHub/" "Barnes & Noble/" "Apple Computer/" "Adobe/" ".recentf" ".ido.last" ".emacs.d/" "../" "./")
+
+ ("c:/Users/Ravi Ponamgi/AppData/Roaming/.emacs.d/" (21265 38311 0 0) "places" "init.el" "elpa/" "backups/" "auto-save-list/" ".smex-items" "../" "./")
+
+ ("c:/Users/Ravi Ponamgi/AppData/Roaming/" (21265 38312 0 0) "Subversion/" "SlimBrowser/" "npm-cache/" "npm/" "Notepad++/" "Mozilla/" "MiKTeX/" "Microsoft/" "Media Center Programs/" "MathWorks/" "Macromedia/" "Identities/" "GitHub/" "Barnes & Noble/" "Apple Computer/" "Adobe/" ".recentf" ".ido.last" ".emacs.d/" "../" "./")
+
+ ("c:/Users/Ravi Ponamgi/AppData/LocalLow/" (20660 19016 0 0) "Temp/" "Sun/" "Microsoft/" "Adobe/" "../" "./")
+
+ ("c:/Users/Ravi Ponamgi/AppData/Local/" (21260 32080 0 0) "VirtualStore/" "Temporary Internet Files/" "Temp/" "Resmon.ResmonCfg" "MiKTeX/" "Microsoft Help/" "Microsoft/" "IconCache.db" "History/" "Google/" "GitHub/" "GDIPFONTCACHEV1.DAT" "Deployment/" "Apps/" "Application Data/" "Apple Computer/" "Adobe/" "../" "./")
+
+ ("c:/Users/Ravi Ponamgi/Documents/MATLAB/emacs-24.3/" (21265 34993 0 0) "site-lisp/" "README.W32" "README" "lisp/" "leim/" "info/" "etc/" "COPYING" "BUGS" "bin/" "../" "./")
+
+ ("c:/Users/Ravi Ponamgi/Documents/MATLAB/emacs-24.3/bin/" (21265 34717 0 0) "runemacs.exe" "profile.exe" "movemail.exe" "libXpm.dll" "hexl.exe" "etags.exe" "emacsclientw.exe" "emacsclient.exe" "emacs.exe" "ebrowse.exe" "ddeclient.exe" "ctags.exe" "COPYING" "cmdproxy.exe" "addpm.exe" "../" "./")
+
+ ("c:/Users/Ravi Ponamgi/AppData/Roaming/.emacs.d/elpa/solarized-theme-1.0.0/" (21265 35682 0 0) "solarized.el" "solarized-theme.elc" "solarized-theme.el" "solarized-theme-utils.elc" "solarized-theme-utils.el" "solarized-theme-pkg.elc" "solarized-theme-pkg.el" "solarized-theme-autoloads.el" "solarized-light-theme.elc" "solarized-light-theme.el" "solarized-dark-theme.elc" "solarized-dark-theme.el" "../" "./")
+
+ ("c:/Users/Ravi Ponamgi/Downloads/" (21265 37252 0 0) "softwareengineeringsommerville.pdf" "octave-3.6.4-vs2010-setup.exe" "GitHubSetup.exe" "emacs-24.3-bin-i386/" "desktop.ini" "Challenges in Deep Learning.pdf" "Architecture.png" "7z920.msi" "../" "./")
+
+ ("c:/Users/Ravi Ponamgi/Downloads/emacs-24.3-bin-i386/" (21265 34709 0 0) "emacs-24.3/" "../" "./")
+
+ ("c:/Users/Ravi Ponamgi/Downloads/emacs-24.3-bin-i386/emacs-24.3/" (21265 34993 0 0) "site-lisp/" "README.W32" "README" "lisp/" "leim/" "info/" "etc/" "COPYING" "BUGS" "bin/" "../" "./")
+
+ ("c:/Users/Ravi Ponamgi/Downloads/emacs-24.3-bin-i386/emacs-24.3/bin/" (21265 34717 0 0) "runemacs.exe" "profile.exe" "movemail.exe" "libXpm.dll" "hexl.exe" "etags.exe" "emacsclientw.exe" "emacsclient.exe" "emacs.exe" "ebrowse.exe" "ddeclient.exe" "ctags.exe" "COPYING" "cmdproxy.exe" "addpm.exe" "../" "./")
+
+ ("c:/Users/Ravi Ponamgi/" (21265 35567 0 0) "Videos/" "Templates/" "Start Menu/" "SendTo/" "Searches/" "Saved Games/" "Recent/" "PrintHood/" "Pictures/" "ntuser.ini" "NTUSER.DAT{6cced2f1-6e01-11de-8bed-001e0bcd1824}.TMContainer00000000000000000002.regtrans-ms" "NTUSER.DAT{6cced2f1-6e01-11de-8bed-001e0bcd1824}.TMContainer00000000000000000001.regtrans-ms" "NTUSER.DAT{6cced2f1-6e01-11de-8bed-001e0bcd1824}.TM.blf" "ntuser.dat.LOG2" "ntuser.dat.LOG1" "NTUSER.DAT" "NetHood/" "My Documents/" "Music/" "Local Settings/" "Links/" "Favorites/" "Downloads/" "Documents/" "Desktop/" "Cookies/" "Contacts/" "Application Data/" "AppData/" ".ssh/" ".gitconfig" "../" "./")
+
+ ("c:/Users/Ravi Ponamgi/AppData/" (20658 37975 0 0) "Roaming/" "LocalLow/" "Local/" "../" "./")
+
+ ("c:/Users/Ravi Ponamgi/AppData/Roaming/.emacs.d/elpa/enclose-0.0.2/" (21265 36064 0 0) "enclose.elc" "enclose.el" "enclose-pkg.elc" "enclose-pkg.el" "enclose-autoloads.el" "../" "./")
+
+ ("c:/Users/Ravi Ponamgi/AppData/Roaming/.emacs.d/elpa/" (21265 36064 0 0) "yasnippet-0.8.0/" "undo-tree-0.6.5/" "starter-kit-2.0.3/" "solarized-theme-1.0.0/" "smex-3.0/" "paredit-22/" "magit-1.2.0/" "ido-ubiquitous-2.10/" "idle-highlight-mode-1.1.2/" "find-file-in-project-3.2/" "enclose-0.0.2/" "archives/" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

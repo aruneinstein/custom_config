@@ -1,0 +1,49 @@
+function Problem5( )
+%% Problem 5
+% 
+    clear all;
+    load('Problem5Data.mat');
+    data = Problem5Data;
+    records = data(:, 1:2);
+    harmfulness = data(:, 3);
+
+    harmful = records .* [harmfulness, harmfulness];
+    harmful(sum(harmful, 2) == 0, :) = [];
+    p_x_harmful_mu = mean(harmful);
+    p_x_harmful_sig = cov(harmful);
+
+    unharmful = records .* [~harmfulness, ~harmfulness];
+    unharmful(sum(unharmful, 2) == 0, :) = [];
+    p_x_unharmful_mu = mean(unharmful);
+    p_x_unharmful_sig = cov(unharmful);
+    
+    p_harmful = length(harmfulness(harmfulness == 1))/length(harmfulness);
+    p_unharmful = 1 - p_harmful;
+    
+    dom = [50 180 50 180];
+    
+    posteriori_harmful = @(x, y) mvnpdf([x y], p_x_harmful_mu,...
+        p_x_harmful_sig) * p_harmful;
+    posteriori_unharmful = @(x, y) mvnpdf([x y], p_x_unharmful_mu,...
+        p_x_unharmful_sig) * p_unharmful;
+    
+%     (a)
+    figure(1);
+    colormap([0 0 1]);
+    ezsurf(posteriori_harmful, dom);
+    title('Harmful');
+    
+    figure(2);
+    colormap([1 0 0]);
+    ezsurf(posteriori_unharmful, dom);
+    title('Unharmful');
+    
+    figure(3);
+    ezcontour(posteriori_unharmful, dom);
+    colormap([1 0 0]);
+    hold on;
+    ezcontour(posteriori_harmful, dom);
+    ezplot(@(x, y) (posteriori_harmful(x, y) - posteriori_unharmful(x, y)), dom);
+    title('Contours And Decision Boundaries')
+    hold off;
+end
