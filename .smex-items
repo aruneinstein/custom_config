@@ -1,31 +1,53 @@
 
 ;; ----- smex-history -----
 (
- server-mode
- server-start
- fill-region
- set-fill-column
- org-mode
- fill-paragraph
  load-theme
+ python-mode
+ cua-mode
+ ansi-term
+ align
+ run-with-idle-timer
+ make-directory
 )
 
 ;; ----- smex-data -----
 (
- (load-theme . 19)
- (package-install . 8)
- (set-default-font . 2)
- (enclose-mode . 5)
+ (load-theme . 31)
+ (package-install . 15)
+ (set-default-font . 3)
+ (enclose-mode . 6)
  (octave-mode . 7)
  (eval-buffer . 1)
  (idl-mode . 1)
  (fundamental-mode . 1)
  (hi-lock-mode . 2)
- (org-mode . 3)
+ (org-mode . 4)
  (org-table-create . 2)
  (fill-region . 27)
  (fill-paragraph . 2)
  (set-fill-column . 2)
  (server-start . 1)
  (server-mode . 1)
+ (irc . 3)
+ (erc . 1)
+ (make-directory . 4)
+ (yas-minor-mode . 5)
+ (comment-box . 1)
+ (electric-pair-mode . 4)
+ (cua-mode . 8)
+ (idle-highlight-mode . 2)
+ (yas-global-mode . 3)
+ (follow-mode . 1)
+ (shell . 1)
+ (eshell . 1)
+ (ansi-term . 9)
+ (bury-buffer . 1)
+ (esk-eval-and-replace . 1)
+ (sort-fields . 1)
+ (sort-columns . 1)
+ (sort-regexp-fields . 2)
+ (sort-numeric-fields . 1)
+ (run-with-idle-timer . 2)
+ (align . 2)
+ (python-mode . 1)
 )
