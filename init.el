@@ -5,14 +5,11 @@
 (package-initialize)
 
 (set-default-font "Source Code Pro-12")
-(load-theme 'solarized-dark)
+(color-theme-solarized 'dark)
 (windmove-default-keybindings)
-(require 'enclose)
-(enclose-mode t)
 
 (electric-pair-mode)
 
-(server-start)
 
 (setq auto-mode-alist
       (cons
