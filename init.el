@@ -1,31 +1,35 @@
 (require 'package)
-(add-to-list 'package-archives 
-    '("marmalade" .
-      "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
+
+;; (defvar my-packages '(better-defaults paredit idle-highlight-mode ido-ubiquitous
+;;                                       find-file-in-project magit smex scpaste))
+
 (package-initialize)
+;; (dolist (p my-packages)
+;;   (when (not (package-installed-p p))
+;;     (package-install p)))
 
 (set-default-font "Source Code Pro-12")
 (color-theme-solarized 'dark)
-(windmove-default-keybindings)
 
+(windmove-default-keybindings)
 (electric-pair-mode)
 
+(idle-highlight-mode)
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "C-x \\") 'align-regexp)
 
-(setq auto-mode-alist
-      (cons
-       '("\\.m$" . octave-mode)
-       auto-mode-alist))
+;; Push mark when using ido-imenu
+ 
+(defvar push-mark-before-goto-char nil)
+ 
+(defadvice goto-char (before push-mark-first activate)
+  (when push-mark-before-goto-char
+    (push-mark)))
+ 
+(defun ido-imenu-push-mark ()
+  (interactive)
+  (let ((push-mark-before-goto-char t))
+    (idomenu)))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default))))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(global-set-key (kbd "C-x C-i") 'ido-imenu-push-mark)
