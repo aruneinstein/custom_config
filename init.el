@@ -1,16 +1,17 @@
 (require 'package)
 (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
 
-;; (defvar my-packages '(better-defaults paredit idle-highlight-mode ido-ubiquitous
-;;                                       find-file-in-project magit smex scpaste))
+(defvar my-packages '(better-defaults paredit idle-highlight-mode ido-ubiquitous
+                                      find-file-in-project magit smex scpaste color-theme-solarized))
 
 (package-initialize)
-;; (dolist (p my-packages)
-;;   (when (not (package-installed-p p))
-;;     (package-install p)))
+(dolist (p my-packages)
+  (when (not (package-installed-p p))
+    (package-install p)))
 
 (set-default-font "Source Code Pro-12")
-(color-theme-solarized 'dark)
+;; (load-theme 'solarized-light t)
+(setq inhibit-startup-message t)
 
 (windmove-default-keybindings)
 (electric-pair-mode)
